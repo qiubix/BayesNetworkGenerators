@@ -12,3 +12,9 @@ public:
 TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeGeneratorComponent) {
   ASSERT_THAT(generator.name(), Eq("PclOctreeGenerator"));
 }
+
+TEST_F(PclOctreeGeneratorTest, shouldInitializeStreams) {
+  generator.prepareInterface();
+
+  ASSERT_THAT(generator.getStream("out_octree"), NotNull());
+}
