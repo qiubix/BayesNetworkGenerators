@@ -4,6 +4,9 @@ PROJECT(BayesNetworkGenerators)
 # CMake required version must be >= 2.6
 cmake_minimum_required(VERSION 2.6)
 
+# source files location
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/src)
+
 # Find DisCODe installation
 FIND_PACKAGE(DisCODe REQUIRED)
 
