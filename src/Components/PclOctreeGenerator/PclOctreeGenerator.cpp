@@ -45,6 +45,31 @@ OctreeWithSIFT* PclOctreeGenerator::getOctree() {
 void PclOctreeGenerator::buildOctree() {
   double voxelSize = 0.01f;
   octree = new OctreeWithSIFT(voxelSize);
+
+  pcl::PointCloud<PointXYZSIFT>::Ptr cloud = getPointCloud();
+
+  octree -> setInputCloud(cloud);
+  octree -> defineBoundingBox();
+  octree -> addPointsFromInputCloud();
+}
+
+pcl::PointCloud<PointXYZSIFT>::Ptr PclOctreeGenerator::getPointCloud() const {
+  pcl::PointCloud<PointXYZSIFT>::Ptr cloud(new pcl::PointCloud<PointXYZSIFT>);
+  cloud->width = 8;
+  cloud->height = 1;
+  cloud->points.resize(cloud->width * cloud->height);
+
+  for (int j = 0; j < cloud->width; ++j) {
+    cloud->points[j].pointId = j;
+    cloud->points[j].x = (float) (j + 0.1);
+    cloud->points[j].y = (float) (j + 0.2);
+    cloud->points[j].z = (float) (j + 0.3);
+    for(int i=0; i<128; i++) {
+      cloud->points[j].descriptor[i] = i;
+    }
+  }
+
+  return cloud;
 }
 
 bool PclOctreeGenerator::onInit() {

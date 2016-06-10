@@ -69,6 +69,7 @@ private:
   pcl::PointCloud<PointXYZSIFT>::Ptr cloud;
   OctreeWithSIFT* octree;
 //  Octree* octree;
+  pcl::PointCloud<PointXYZSIFT>::Ptr getPointCloud() const;
 };
 
 }//: namespace Network

@@ -1,5 +1,6 @@
 #include <gmock/gmock.h>
 #include <Components/PclOctreeGenerator/PclOctreeGenerator.hpp>
+#include <vector>
 
 using Generators::Network::PclOctreeGenerator;
 using namespace testing;
@@ -25,4 +26,12 @@ TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeOnStart) {
   generator.onStart();
 
   ASSERT_THAT(generator.getOctree(), NotNull());
+}
+
+TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWith8Points) {
+  generator.buildOctree();
+
+  ASSERT_THAT(generator.getOctree()->getInputCloud(), NotNull());
+  size_t pointCloudSize = generator.getOctree()->getInputCloud().get()->size();
+  ASSERT_THAT(pointCloudSize, Eq(8));
 }
