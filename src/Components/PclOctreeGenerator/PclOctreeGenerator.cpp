@@ -34,6 +34,10 @@ void PclOctreeGenerator::prepareInterface() {
 //  this -> cloud =  cloud;
 //}
 
+OctreeWithSIFT* PclOctreeGenerator::getOctree() {
+  return NULL;
+}
+
 //pcl::PointCloud<PointXYZSIFT>::Ptr PclOctreeGenerator::getPointCloud() {
 //  return cloud;
 //}

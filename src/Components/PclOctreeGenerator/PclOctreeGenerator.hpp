@@ -15,8 +15,15 @@
 #include "DataStream.hpp"
 //#include "Property.hpp"
 
+#include <pcl/octree/octree_pointcloud.h>
+
 #include "Types/PointXYZSIFT.hpp"
+#include <Types/OctreeContainers.hpp>
 //#include "Types/Octree.hpp"
+
+typedef pcl::octree::OctreePointCloud<PointXYZSIFT,
+    Processors::Network::OctreeContainerPointIndicesWithId,
+    Processors::Network::OctreeContainerEmptyWithId> OctreeWithSIFT;
 
 namespace Generators {
 namespace Network {
@@ -37,7 +44,7 @@ public:
 //  pcl::PointCloud<PointXYZSIFT>::Ptr getPointCloud();
 
   void buildOctree();
-//  Octree getOctree();
+  OctreeWithSIFT* getOctree();
 
 protected:
 

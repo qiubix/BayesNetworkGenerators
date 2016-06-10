@@ -21,6 +21,8 @@ add_definitions(${PCL_DEFINITIONS})
 set(CMAKE_MODULE_PATH ${DisCODe_DIR} ${CMAKE_MODULE_PATH})
 include(DisCODeMacros)
 
+DISCODE_FIND_DCL(BayesNetworkTypes)
+
 # Testing
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 include(GoogleMock)
