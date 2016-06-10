@@ -21,4 +21,8 @@ TEST_F(PclOctreeGeneratorTest, shouldInitializeStreams) {
 
 TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeOnStart) {
   ASSERT_THAT(generator.getOctree(), IsNull());
+
+  generator.onStart();
+
+  ASSERT_THAT(generator.getOctree(), NotNull());
 }

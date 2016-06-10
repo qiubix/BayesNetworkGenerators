@@ -6,6 +6,8 @@
 //#include <memory>
 #include <string>
 //#include <iostream>
+#include <pcl/octree/octree.h>
+#include <pcl/octree/octree_impl.h>
 
 #include "PclOctreeGenerator.hpp"
 
@@ -16,6 +18,7 @@ namespace Network {
 
 PclOctreeGenerator::PclOctreeGenerator(const std::string & name) : Base::Component(name) {
   LOG(LTRACE)<<"Hello PclOctreeGenerator\n";
+  octree = NULL;
 }
 
 PclOctreeGenerator::~PclOctreeGenerator() {
@@ -24,10 +27,7 @@ PclOctreeGenerator::~PclOctreeGenerator() {
 
 void PclOctreeGenerator::prepareInterface() {
   LOG(LTRACE) << "PclOctreeGenerator::prepareInterface\n";
-//  registerStream("in_cloud", &in_cloud);
   registerStream("out_octree", &out_octree);
-  registerHandler("onNewCloud", boost::bind(&PclOctreeGenerator::onNewCloud, this));
-//  addDependency("onNewCloud", &in_cloud);
 }
 
 //void PclOctreeGenerator::setPointCloud(pcl::PointCloud<PointXYZSIFT>::Ptr cloud) {
@@ -35,7 +35,7 @@ void PclOctreeGenerator::prepareInterface() {
 //}
 
 OctreeWithSIFT* PclOctreeGenerator::getOctree() {
-  return NULL;
+  return octree;
 }
 
 //pcl::PointCloud<PointXYZSIFT>::Ptr PclOctreeGenerator::getPointCloud() {
@@ -43,6 +43,8 @@ OctreeWithSIFT* PclOctreeGenerator::getOctree() {
 //}
 
 void PclOctreeGenerator::buildOctree() {
+  double voxelSize = 0.01f;
+  octree = new OctreeWithSIFT(voxelSize);
 }
 
 bool PclOctreeGenerator::onInit() {
@@ -62,10 +64,8 @@ bool PclOctreeGenerator::onStop() {
 
 bool PclOctreeGenerator::onStart() {
   LOG(LTRACE) << "PclOctreeGenerator::onStart\n";
+  buildOctree();
   return true;
-}
-
-void PclOctreeGenerator::onNewCloud() {
 }
 
 }//: namespace Network

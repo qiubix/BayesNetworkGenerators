@@ -15,6 +15,7 @@
 #include "DataStream.hpp"
 //#include "Property.hpp"
 
+//#include <pcl/point_cloud.h>
 #include <pcl/octree/octree_pointcloud.h>
 
 #include "Types/PointXYZSIFT.hpp"
@@ -46,6 +47,8 @@ public:
   void buildOctree();
   OctreeWithSIFT* getOctree();
 
+  bool onStart();
+
 protected:
 
   /// Input data stream
@@ -56,16 +59,15 @@ protected:
 
   bool onInit();
   bool onFinish();
-  bool onStart();
   bool onStop();
 
   /*!
    * Event handler function.
    */
-  void onNewCloud();
 
 private:
   pcl::PointCloud<PointXYZSIFT>::Ptr cloud;
+  OctreeWithSIFT* octree;
 //  Octree* octree;
 };
 
