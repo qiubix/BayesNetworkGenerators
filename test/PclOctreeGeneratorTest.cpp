@@ -47,7 +47,7 @@ TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWith8Points) {
   generator.buildOctree();
 
   ASSERT_THAT(generator.getOctree()->getInputCloud(), NotNull());
-  size_t pointCloudSize = generator.getOctree()->getInputCloud().get()->size();
+  size_t pointCloudSize = generator.getOctree()->getInputCloud()->size();
   ASSERT_THAT(pointCloudSize, Eq(8));
 }
 

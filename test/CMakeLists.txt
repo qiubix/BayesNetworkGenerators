@@ -13,3 +13,4 @@ INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR})
 #create_test_suite(CvMatSinkTest CvMatSinkTest.cpp CvMatSink)
 
 create_test_suite(PclOctreeGeneratorTest PclOctreeGeneratorTest.cpp PclOctreeGenerator)
+target_link_libraries(PclOctreeGeneratorTest OctreeTypes)

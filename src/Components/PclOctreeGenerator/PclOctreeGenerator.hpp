@@ -20,11 +20,13 @@
 
 #include "Types/PointXYZSIFT.hpp"
 #include <Types/OctreeContainers.hpp>
-//#include "Types/Octree.hpp"
+#include <Types/Octree.hpp>
 
 typedef pcl::octree::OctreePointCloud<PointXYZSIFT,
     Processors::Network::OctreeContainerPointIndicesWithId,
     Processors::Network::OctreeContainerEmptyWithId> OctreeWithSIFT;
+
+using Processors::Network::Octree;
 
 namespace Generators {
 namespace Network {
@@ -45,7 +47,7 @@ public:
 //  pcl::PointCloud<PointXYZSIFT>::Ptr getPointCloud();
 
   void buildOctree();
-  OctreeWithSIFT* getOctree();
+  Octree* getOctree();
 
   bool onStart();
 
@@ -67,7 +69,7 @@ protected:
 
 private:
   pcl::PointCloud<PointXYZSIFT>::Ptr cloud;
-  OctreeWithSIFT* octree;
+  Octree* octree;
 //  Octree* octree;
   pcl::PointCloud<PointXYZSIFT>::Ptr getPointCloud() const;
 };

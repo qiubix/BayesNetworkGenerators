@@ -34,7 +34,7 @@ void PclOctreeGenerator::prepareInterface() {
 //  this -> cloud =  cloud;
 //}
 
-OctreeWithSIFT* PclOctreeGenerator::getOctree() {
+Octree* PclOctreeGenerator::getOctree() {
   return octree;
 }
 
@@ -43,14 +43,15 @@ OctreeWithSIFT* PclOctreeGenerator::getOctree() {
 //}
 
 void PclOctreeGenerator::buildOctree() {
-  double voxelSize = 0.01f;
-  octree = new OctreeWithSIFT(voxelSize);
+//  double voxelSize = 0.01f;
+//  octree = new OctreeWithSIFT(voxelSize);
 
   pcl::PointCloud<PointXYZSIFT>::Ptr cloud = getPointCloud();
+  octree = new Octree(cloud);
 
-  octree -> setInputCloud(cloud);
-  octree -> defineBoundingBox();
-  octree -> addPointsFromInputCloud();
+//  octree -> setInputCloud(cloud);
+//  octree -> defineBoundingBox();
+//  octree -> addPointsFromInputCloud();
 }
 
 pcl::PointCloud<PointXYZSIFT>::Ptr PclOctreeGenerator::getPointCloud() const {
