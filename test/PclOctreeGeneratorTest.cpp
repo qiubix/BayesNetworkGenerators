@@ -10,6 +10,21 @@ public:
   PclOctreeGenerator generator;
 };
 
+MATCHER(hasEveryPointWithUniqueIndex, "") {
+  for (int i=0; i < arg -> size() - 1; i++) {
+    int firstPointId = arg -> points[i].pointId;
+
+    for (int j = i + 1; j < arg -> size(); ++j) {
+      int secondPointId = arg -> points[j].pointId;
+      if (firstPointId == secondPointId)
+        return false;
+    }
+
+  }
+  return true;
+}
+
+
 TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeGeneratorComponent) {
   ASSERT_THAT(generator.name(), Eq("PclOctreeGenerator"));
 }
@@ -34,4 +49,10 @@ TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWith8Points) {
   ASSERT_THAT(generator.getOctree()->getInputCloud(), NotNull());
   size_t pointCloudSize = generator.getOctree()->getInputCloud().get()->size();
   ASSERT_THAT(pointCloudSize, Eq(8));
+}
+
+TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWithUniqueIndices) {
+  generator.buildOctree();
+
+  ASSERT_THAT(generator.getOctree()->getInputCloud(), hasEveryPointWithUniqueIndex());
 }
