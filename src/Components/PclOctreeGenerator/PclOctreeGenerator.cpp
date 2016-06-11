@@ -48,6 +48,7 @@ void PclOctreeGenerator::buildOctree() {
 
   pcl::PointCloud<PointXYZSIFT>::Ptr cloud = getPointCloud();
   octree = new Octree(cloud);
+  octree->init();
 
 //  octree -> setInputCloud(cloud);
 //  octree -> defineBoundingBox();

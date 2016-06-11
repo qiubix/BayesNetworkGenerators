@@ -10,6 +10,16 @@ public:
   PclOctreeGenerator generator;
 };
 
+MATCHER_P(hasSpecificNumberOfPoints, numberOfPoints, "") {
+  if ( arg -> getInputCloud() == NULL)
+    return false;
+  else if (arg -> getInputCloud() -> size() != numberOfPoints)
+    return false;
+  else if (arg -> getNumberOfPoints() != numberOfPoints)
+    return false;
+  return true;
+}
+
 MATCHER(hasEveryPointWithUniqueIndex, "") {
   for (int i=0; i < arg -> size() - 1; i++) {
     int firstPointId = arg -> points[i].pointId;
@@ -23,7 +33,6 @@ MATCHER(hasEveryPointWithUniqueIndex, "") {
   }
   return true;
 }
-
 
 TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeGeneratorComponent) {
   ASSERT_THAT(generator.name(), Eq("PclOctreeGenerator"));
@@ -46,9 +55,10 @@ TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeOnStart) {
 TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWith8Points) {
   generator.buildOctree();
 
-  ASSERT_THAT(generator.getOctree()->getInputCloud(), NotNull());
-  size_t pointCloudSize = generator.getOctree()->getInputCloud()->size();
-  ASSERT_THAT(pointCloudSize, Eq(8));
+//  ASSERT_THAT(generator.getOctree()->getInputCloud(), NotNull());
+//  size_t pointCloudSize = generator.getOctree()->getInputCloud()->size();
+//  ASSERT_THAT(pointCloudSize, Eq(8));
+  ASSERT_THAT(generator.getOctree(), hasSpecificNumberOfPoints(8));
 }
 
 TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWithUniqueIndices) {
