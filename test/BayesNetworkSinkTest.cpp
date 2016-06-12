@@ -12,3 +12,9 @@ public:
 TEST_F(BayesNetworkSinkTest, shouldCreateBayesNetworkSinkComponent) {
   ASSERT_THAT(sink.name(), Eq("BayesNetworkSink"));
 }
+
+TEST_F(BayesNetworkSinkTest, shouldInitializeStreams) {
+  sink.prepareInterface();
+
+  ASSERT_THAT(sink.getStream("in_network"), NotNull());
+}

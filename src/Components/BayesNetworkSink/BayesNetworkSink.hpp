@@ -14,6 +14,8 @@
 #include "DataStream.hpp"
 #include "Property.hpp"
 
+#include <Types/BayesNetwork.hpp>
+
 namespace Sinks {
 namespace Network {
 
@@ -44,7 +46,7 @@ public:
 protected:
 
   /// Input data stream
-//  Base::DataStreamIn<cv::Mat> in_img;
+  Base::DataStreamIn<Processors::Network::BayesNetwork> in_network;
 
   bool onInit();
   bool onFinish();

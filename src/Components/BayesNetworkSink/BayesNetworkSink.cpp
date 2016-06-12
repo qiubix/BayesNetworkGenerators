@@ -27,7 +27,7 @@ BayesNetworkSink::~BayesNetworkSink() {
 
 void BayesNetworkSink::prepareInterface() {
   LOG(LTRACE) << "BayesNetworkSink::prepareInterface\n";
-//  registerStream("in_img", &in_img);
+  registerStream("in_network", &in_network);
 //  registerHandler("onNewMat", boost::bind(&BayesNetworkSink::onNewMat, this));
 //  addDependency("onNewMat", &in_img);
 }
