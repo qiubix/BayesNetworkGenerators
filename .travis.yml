@@ -53,10 +53,7 @@ before_script:
   - export DISCODE_DCL_DIR=/home/travis/src/DCL/
   - cd ~/build/qiubix/BayesNetworkGenerators
   - ./install_discode.sh
-  - cd /home/travis/src/DCL
-  - git clone https://github.com/qiubix/BayesNetworkTypes.git
-  - cd BayesNetworkTypes && cmake . && make && make install
-  - cd ~/build/qiubix/BayesNetworkGenerators
+  - ./install_dependencies.sh
 script: cmake -DCMAKE_BUILD_TYPE=Debug . && make && make test
 after_success:
   - coveralls --exclude ext --gcov-options '\-lp'
