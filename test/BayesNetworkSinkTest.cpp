@@ -27,10 +27,16 @@ TEST_F(BayesNetworkSinkTest, shouldInitializeHandlers) {
   ASSERT_THAT(sink.getHandler("onNewNetwork"), NotNull());
 }
 
+//TEST_F(BayesNetworkSinkTest, shouldDisplayErrorIfNetworkIsNullOnNewNetwork) {
+//  internal::CaptureStdout();
+//
+//  sink.onNewNetwork();
+//
+//  string output = internal::GetCapturedStdout();
+//  ASSERT_THAT(output, Eq("Error! Network is NULL."));
+//}
+
 TEST_F(BayesNetworkSinkTest, shouldDisplayNetworkOnNewNetwork) {
-//  cv::Mat img;
-//  img = cv::Mat::ones(3, 4, CV_32S);
-//  sink.setNetwork(img);
   BayesNetwork network;
   network.addVoxelNode(0);
   network.addVoxelNode(1);
@@ -48,5 +54,7 @@ TEST_F(BayesNetworkSinkTest, shouldDisplayNetworkOnNewNetwork) {
 
   string output = internal::GetCapturedStdout();
   ASSERT_THAT(output, HasSubstr("Number of feature nodes: 2"));
+  ASSERT_THAT(output, HasSubstr("Number of all nodes: 5"));
+  //TODO: get more info about network
 //  ASSERT_THAT(output, Eq("[1, 1, 1, 1;\n  1, 1, 1, 1;\n  1, 1, 1, 1]\n"));
 }

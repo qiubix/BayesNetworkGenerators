@@ -62,14 +62,12 @@ void BayesNetworkSink::setNetwork(Processors::Network::BayesNetwork* network) {
   this->network = network;
 }
 
-//void BayesNetworkSink::onNewMat() {
-//  img = in_img.read();
-//  display();
-//}
-
 void BayesNetworkSink::display() {
-  unsigned long numberOfFeatureNodes = network->getFeatureNodeNames().size();
+  int numberOfFeatureNodes = network -> getNumberOfFeatureNodes();
   std::cout << "Number of feature nodes: " << numberOfFeatureNodes << std::endl;
+
+  int totalNumberOfNodes = network -> getNumberOfNodes();
+  std::cout << "Number of all nodes: " << totalNumberOfNodes << std::endl;
   LOG(LWARNING) << "END OF SEQUENCE\n";
 }
 

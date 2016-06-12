@@ -40,14 +40,6 @@ public:
 
   void prepareInterface();
 
-//  const cv::Mat &getImg() const {
-//    return img;
-//  }
-
-//  void setNetwork(const cv::Mat & img) {
-//    this -> img = img;
-//  }
-
   void onNewNetwork();
   void display();
 
