@@ -50,27 +50,18 @@ public:
   Octree* getOctree();
 
   bool onStart();
-
-protected:
-
-  /// Input data stream
-//  Base::DataStreamIn< pcl::PointCloud<PointXYZSIFT>::Ptr > in_cloud;
-
-  /// Output data stream
-  Base::DataStreamOut< pcl::PointCloud<PointXYZSIFT>::Ptr > out_octree;
-
   bool onInit();
   bool onFinish();
   bool onStop();
 
-  /*!
-   * Event handler function.
-   */
+protected:
+
+  /// Output data stream
+  Base::DataStreamOut< pcl::PointCloud<PointXYZSIFT>::Ptr > out_octree;
 
 private:
   pcl::PointCloud<PointXYZSIFT>::Ptr cloud;
   Octree* octree;
-//  Octree* octree;
   pcl::PointCloud<PointXYZSIFT>::Ptr getPointCloud() const;
 };
 

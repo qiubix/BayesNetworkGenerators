@@ -27,6 +27,22 @@ TEST_F(BayesNetworkSinkTest, shouldInitializeHandlers) {
   ASSERT_THAT(sink.getHandler("onNewNetwork"), NotNull());
 }
 
+TEST_F(BayesNetworkSinkTest, shouldImplementOnInitMethod) {
+  ASSERT_THAT(sink.onInit(), Eq(true));
+}
+
+TEST_F(BayesNetworkSinkTest, shouldImplementOnFinishMethod) {
+  ASSERT_THAT(sink.onFinish(), Eq(true));
+}
+
+TEST_F(BayesNetworkSinkTest, shouldImplementOnStartMethod) {
+  ASSERT_THAT(sink.onStart(), Eq(true));
+}
+
+TEST_F(BayesNetworkSinkTest, shouldImplementOnStopMethod) {
+  ASSERT_THAT(sink.onStop(), Eq(true));
+}
+
 //TEST_F(BayesNetworkSinkTest, shouldDisplayErrorIfNetworkIsNullOnNewNetwork) {
 //  internal::CaptureStdout();
 //

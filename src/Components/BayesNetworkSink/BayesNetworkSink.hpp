@@ -40,6 +40,11 @@ public:
 
   void prepareInterface();
 
+  bool onInit();
+  bool onFinish();
+  bool onStart();
+  bool onStop();
+
   void onNewNetwork();
   void display();
 
@@ -49,11 +54,6 @@ protected:
 
   /// Input data stream
   Base::DataStreamIn<Processors::Network::BayesNetwork*> in_network;
-
-  bool onInit();
-  bool onFinish();
-  bool onStart();
-  bool onStop();
 
 private:
   Processors::Network::BayesNetwork* network;
