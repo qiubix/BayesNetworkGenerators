@@ -10,6 +10,7 @@
 //#define CV_NO_BACKWARD_COMPATIBILITY
 
 
+#include <Types/BayesNetwork.hpp>
 #include "Component_Aux.hpp"
 #include "Component.hpp"
 #include "DataStream.hpp"
@@ -43,17 +44,19 @@ public:
 //    return img;
 //  }
 
-//  void setImg(const cv::Mat & img) {
+//  void setNetwork(const cv::Mat & img) {
 //    this -> img = img;
 //  }
 
   void onNewNetwork();
   void display();
 
+  void setNetwork(Processors::Network::BayesNetwork* network);
+
 protected:
 
   /// Input data stream
-  Base::DataStreamIn<Processors::Network::BayesNetwork> in_network;
+  Base::DataStreamIn<Processors::Network::BayesNetwork*> in_network;
 
   bool onInit();
   bool onFinish();
@@ -61,6 +64,7 @@ protected:
   bool onStop();
 
 private:
+  Processors::Network::BayesNetwork* network;
 };
 
 }//: namespace Network

@@ -5,7 +5,7 @@
 
 //#include <memory>
 //#include <string>
-//#include <iostream>
+#include <iostream>
 //#include <opencv2/highgui/highgui.hpp>
 
 #include "BayesNetworkSink.hpp"
@@ -54,7 +54,12 @@ bool BayesNetworkSink::onStart() {
 }
 
 void BayesNetworkSink::onNewNetwork() {
+  setNetwork(in_network.read());
+  display();
+}
 
+void BayesNetworkSink::setNetwork(Processors::Network::BayesNetwork* network) {
+  this->network = network;
 }
 
 //void BayesNetworkSink::onNewMat() {
@@ -62,10 +67,11 @@ void BayesNetworkSink::onNewNetwork() {
 //  display();
 //}
 
-//void BayesNetworkSink::display() {
-//  cout << img << endl;
-//  LOG(LWARNING) << "END OF SEQUENCE\n";
-//}
+void BayesNetworkSink::display() {
+  unsigned long numberOfFeatureNodes = network->getFeatureNodeNames().size();
+  std::cout << "Number of feature nodes: " << numberOfFeatureNodes << std::endl;
+  LOG(LWARNING) << "END OF SEQUENCE\n";
+}
 
 }//: namespace Network
 }//: namespace Sinks
