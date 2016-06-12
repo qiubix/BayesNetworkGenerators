@@ -3,6 +3,7 @@
  * \brief
  */
 
+#pragma once
 #ifndef BAYES_NETWORK_SINK_HPP_
 #define BAYES_NETWORK_SINK_HPP_
 
@@ -14,7 +15,13 @@
 #include "DataStream.hpp"
 #include "Property.hpp"
 
-#include <Types/BayesNetwork.hpp>
+namespace Processors {
+namespace Network {
+
+class BayesNetwork;
+
+}
+}
 
 namespace Sinks {
 namespace Network {
@@ -40,7 +47,7 @@ public:
 //    this -> img = img;
 //  }
 
-//  void onNewMat();
+  void onNewNetwork();
   void display();
 
 protected:

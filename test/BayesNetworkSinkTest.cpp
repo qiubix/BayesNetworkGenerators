@@ -18,3 +18,9 @@ TEST_F(BayesNetworkSinkTest, shouldInitializeStreams) {
 
   ASSERT_THAT(sink.getStream("in_network"), NotNull());
 }
+
+TEST_F(BayesNetworkSinkTest, shouldInitializeHandlers) {
+  sink.prepareInterface();
+
+  ASSERT_THAT(sink.getHandler("onNewNetwork"), NotNull());
+}

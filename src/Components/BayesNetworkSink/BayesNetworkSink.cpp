@@ -11,6 +11,7 @@
 #include "BayesNetworkSink.hpp"
 
 #include "Logger.hpp"
+#include <Types/BayesNetwork.hpp>
 
 namespace Sinks {
 namespace Network {
@@ -28,8 +29,8 @@ BayesNetworkSink::~BayesNetworkSink() {
 void BayesNetworkSink::prepareInterface() {
   LOG(LTRACE) << "BayesNetworkSink::prepareInterface\n";
   registerStream("in_network", &in_network);
-//  registerHandler("onNewMat", boost::bind(&BayesNetworkSink::onNewMat, this));
-//  addDependency("onNewMat", &in_img);
+  registerHandler("onNewNetwork", boost::bind(&BayesNetworkSink::onNewNetwork, this));
+  addDependency("onNewNetwork", &in_network);
 }
 
 bool BayesNetworkSink::onInit() {
@@ -50,6 +51,10 @@ bool BayesNetworkSink::onStop() {
 bool BayesNetworkSink::onStart() {
   LOG(LTRACE) << "BayesNetworkSink::onStart\n";
   return true;
+}
+
+void BayesNetworkSink::onNewNetwork() {
+
 }
 
 //void BayesNetworkSink::onNewMat() {
