@@ -1,5 +1,5 @@
 /*!
- * \file PclOctreeGenerator.hpp
+ * \file OctreeGenerator.hpp
  * \brief Component generating pcl::octree
  */
 
@@ -32,15 +32,15 @@ namespace Generators {
 namespace Network {
 
 /*!
- * \class PclOctreeGenerator
+ * \class OctreeGenerator
  * \brief Component for building octree from point cloud
  * \author Karol Katerżawa
  */
-class PclOctreeGenerator: public Base::Component
+class OctreeGenerator: public Base::Component
 {
 public:
-  PclOctreeGenerator(const std::string & name = "PclOctreeGenerator");
-  virtual ~PclOctreeGenerator();
+  OctreeGenerator(const std::string & name = "OctreeGenerator");
+  virtual ~OctreeGenerator();
 
   void prepareInterface();
 //  void setPointCloud(pcl::PointCloud<PointXYZSIFT>::Ptr cloud);
@@ -72,7 +72,7 @@ private:
 /*
  * Register processor component.
  */
-REGISTER_COMPONENT("PclOctreeGenerator", Generators::Network::PclOctreeGenerator)
+REGISTER_COMPONENT("OctreeGenerator", Generators::Network::OctreeGenerator)
 
 #endif /* PCL_OCTREE_GENERATOR_HPP_ */
 

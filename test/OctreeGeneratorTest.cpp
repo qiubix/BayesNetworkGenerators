@@ -1,13 +1,13 @@
 #include <gmock/gmock.h>
-#include <Components/PclOctreeGenerator/PclOctreeGenerator.hpp>
+#include <Components/OctreeGenerator/OctreeGenerator.hpp>
 #include <vector>
 
-using Generators::Network::PclOctreeGenerator;
+using Generators::Network::OctreeGenerator;
 using namespace testing;
 
-class PclOctreeGeneratorTest : public Test {
+class OctreeGeneratorTest : public Test {
 public:
-  PclOctreeGenerator generator;
+  OctreeGenerator generator;
 };
 
 MATCHER_P(hasSpecificNumberOfPoints, numberOfPoints, "") {
@@ -34,29 +34,29 @@ MATCHER(hasEveryPointWithUniqueIndex, "") {
   return true;
 }
 
-TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeGeneratorComponent) {
-  ASSERT_THAT(generator.name(), Eq("PclOctreeGenerator"));
+TEST_F(OctreeGeneratorTest, shouldCreatePclOctreeGeneratorComponent) {
+  ASSERT_THAT(generator.name(), Eq("OctreeGenerator"));
 }
 
-TEST_F(PclOctreeGeneratorTest, shouldInitializeStreams) {
+TEST_F(OctreeGeneratorTest, shouldInitializeStreams) {
   generator.prepareInterface();
 
   ASSERT_THAT(generator.getStream("out_octree"), NotNull());
 }
 
-TEST_F(PclOctreeGeneratorTest, shouldImplementOnInitMethod) {
+TEST_F(OctreeGeneratorTest, shouldImplementOnInitMethod) {
   ASSERT_THAT(generator.onInit(), Eq(true));
 }
 
-TEST_F(PclOctreeGeneratorTest, shouldImplementOnFinishMethod) {
+TEST_F(OctreeGeneratorTest, shouldImplementOnFinishMethod) {
   ASSERT_THAT(generator.onFinish(), Eq(true));
 }
 
-TEST_F(PclOctreeGeneratorTest, shouldImplementOnStopMethod) {
+TEST_F(OctreeGeneratorTest, shouldImplementOnStopMethod) {
   ASSERT_THAT(generator.onStop(), Eq(true));
 }
 
-TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeOnStart) {
+TEST_F(OctreeGeneratorTest, shouldCreatePclOctreeOnStart) {
   ASSERT_THAT(generator.getOctree(), IsNull());
 
   generator.onStart();
@@ -64,7 +64,7 @@ TEST_F(PclOctreeGeneratorTest, shouldCreatePclOctreeOnStart) {
   ASSERT_THAT(generator.getOctree(), NotNull());
 }
 
-TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWith8Points) {
+TEST_F(OctreeGeneratorTest, shouldCreateOctreeWith8Points) {
   generator.buildOctree();
 
 //  ASSERT_THAT(generator.getOctree()->getInputCloud(), NotNull());
@@ -73,7 +73,7 @@ TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWith8Points) {
   ASSERT_THAT(generator.getOctree(), hasSpecificNumberOfPoints(8));
 }
 
-TEST_F(PclOctreeGeneratorTest, shouldCreateOctreeWithUniqueIndices) {
+TEST_F(OctreeGeneratorTest, shouldCreateOctreeWithUniqueIndices) {
   generator.buildOctree();
 
   ASSERT_THAT(generator.getOctree()->getInputCloud(), hasEveryPointWithUniqueIndex());

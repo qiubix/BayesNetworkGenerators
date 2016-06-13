@@ -5,6 +5,6 @@
 
 #ADD_COMPONENT(CvMatSink)
 
-ADD_COMPONENT(PclOctreeGenerator)
+ADD_COMPONENT(OctreeGenerator)
 
 ADD_COMPONENT(BayesNetworkSink)

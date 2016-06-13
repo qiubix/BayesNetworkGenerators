@@ -1,5 +1,5 @@
 /*!
- * \file PclOctreeGenerator.cpp
+ * \file OctreeGenerator.cpp
  * \brief
  */
 
@@ -9,40 +9,40 @@
 #include <pcl/octree/octree.h>
 #include <pcl/octree/octree_impl.h>
 
-#include "PclOctreeGenerator.hpp"
+#include "OctreeGenerator.hpp"
 
 #include "Logger.hpp"
 
 namespace Generators {
 namespace Network {
 
-PclOctreeGenerator::PclOctreeGenerator(const std::string & name) : Base::Component(name) {
-  LOG(LTRACE)<<"Hello PclOctreeGenerator\n";
+OctreeGenerator::OctreeGenerator(const std::string & name) : Base::Component(name) {
+  LOG(LTRACE)<<"Hello OctreeGenerator\n";
   octree = NULL;
 }
 
-PclOctreeGenerator::~PclOctreeGenerator() {
-  LOG(LTRACE)<<"Good bye PclOctreeGenerator\n";
+OctreeGenerator::~OctreeGenerator() {
+  LOG(LTRACE)<<"Good bye OctreeGenerator\n";
 }
 
-void PclOctreeGenerator::prepareInterface() {
-  LOG(LTRACE) << "PclOctreeGenerator::prepareInterface\n";
+void OctreeGenerator::prepareInterface() {
+  LOG(LTRACE) << "OctreeGenerator::prepareInterface\n";
   registerStream("out_octree", &out_octree);
 }
 
-//void PclOctreeGenerator::setPointCloud(pcl::PointCloud<PointXYZSIFT>::Ptr cloud) {
+//void OctreeGenerator::setPointCloud(pcl::PointCloud<PointXYZSIFT>::Ptr cloud) {
 //  this -> cloud =  cloud;
 //}
 
-Octree* PclOctreeGenerator::getOctree() {
+Octree* OctreeGenerator::getOctree() {
   return octree;
 }
 
-//pcl::PointCloud<PointXYZSIFT>::Ptr PclOctreeGenerator::getPointCloud() {
+//pcl::PointCloud<PointXYZSIFT>::Ptr OctreeGenerator::getPointCloud() {
 //  return cloud;
 //}
 
-void PclOctreeGenerator::buildOctree() {
+void OctreeGenerator::buildOctree() {
 //  double voxelSize = 0.01f;
 //  octree = new OctreeWithSIFT(voxelSize);
 
@@ -55,7 +55,7 @@ void PclOctreeGenerator::buildOctree() {
 //  octree -> addPointsFromInputCloud();
 }
 
-pcl::PointCloud<PointXYZSIFT>::Ptr PclOctreeGenerator::getPointCloud() const {
+pcl::PointCloud<PointXYZSIFT>::Ptr OctreeGenerator::getPointCloud() const {
   pcl::PointCloud<PointXYZSIFT>::Ptr cloud(new pcl::PointCloud<PointXYZSIFT>);
   cloud->width = 8;
   cloud->height = 1;
@@ -74,23 +74,23 @@ pcl::PointCloud<PointXYZSIFT>::Ptr PclOctreeGenerator::getPointCloud() const {
   return cloud;
 }
 
-bool PclOctreeGenerator::onInit() {
-  LOG(LTRACE) << "PclOctreeGenerator::initialize\n";
+bool OctreeGenerator::onInit() {
+  LOG(LTRACE) << "OctreeGenerator::initialize\n";
   return true;
 }
 
-bool PclOctreeGenerator::onFinish() {
-  LOG(LTRACE) << "PclOctreeGenerator::finish\n";
+bool OctreeGenerator::onFinish() {
+  LOG(LTRACE) << "OctreeGenerator::finish\n";
   return true;
 }
 
-bool PclOctreeGenerator::onStop() {
-  LOG(LTRACE) << "PclOctreeGenerator::onStop\n";
+bool OctreeGenerator::onStop() {
+  LOG(LTRACE) << "OctreeGenerator::onStop\n";
   return true;
 }
 
-bool PclOctreeGenerator::onStart() {
-  LOG(LTRACE) << "PclOctreeGenerator::onStart\n";
+bool OctreeGenerator::onStart() {
+  LOG(LTRACE) << "OctreeGenerator::onStart\n";
   buildOctree();
   return true;
 }
